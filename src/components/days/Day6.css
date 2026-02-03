@@ -1,0 +1,578 @@
+/* Hug Day Styles */
+.hug-day-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #d4537a 0%, #c2185b 50%, #ad1457 100%);
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Header */
+.hug-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hug-badge {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #ff6b9d, #ff8fb3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+  animation: hugBadgePulse 2s ease-in-out infinite;
+}
+
+.hug-emoji-pulse {
+  font-size: 50px;
+  animation: hugEmojiFloat 3s ease-in-out infinite;
+}
+
+.hug-title {
+  font-size: 48px;
+  color: #fffef8;
+  margin: 20px 0 10px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hug-subtitle {
+  font-size: 20px;
+  color: #ffd1dc;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.hug-date {
+  font-size: 16px;
+  color: #ffb3c6;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Progress Bar */
+.hug-progress {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b9d, #ff1493);
+  border-radius: 15px;
+  transition: width 0.8s ease-out;
+  box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+.progress-text {
+  font-size: 18px;
+  color: #fffef8;
+  font-weight: 600;
+}
+
+/* Hug Scene */
+.hug-scene {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.hug-instruction {
+  font-size: 22px;
+  color: #fffef8;
+  font-weight: 700;
+  margin-bottom: 30px;
+  min-height: 30px;
+  animation: instructionPulse 2s ease-in-out infinite;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hug-container {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 40px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 220, 230, 0.8), rgba(255, 200, 220, 0.8));
+  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+}
+
+.hug-container.complete {
+  animation: completePulse 2s ease-in-out infinite;
+}
+
+/* Floating Hearts */
+.floating-hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float-heart {
+  position: absolute;
+  font-size: 30px;
+  animation: heartFloat 4s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* Characters */
+.character {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.char-body {
+  position: relative;
+}
+
+.char-head {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ffb3c6, #ff8fb3);
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.char-face {
+  font-size: 40px;
+  position: relative;
+}
+
+.char-torso {
+  width: 60px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff6b9d, #ff1493);
+  border-radius: 30px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
+}
+
+.char-arms {
+  position: absolute;
+  top: 90px;
+  width: 120px;
+  height: 60px;
+}
+
+.arm {
+  position: absolute;
+  width: 50px;
+  height: 15px;
+  background: linear-gradient(135deg, #ffb3c6, #ff8fb3);
+  border-radius: 10px;
+  transition: all 0.8s ease-out;
+}
+
+.arm.left {
+  top: 0;
+  left: -15px;
+  transform: rotate(-30deg);
+}
+
+.arm.right {
+  top: 0;
+  right: -15px;
+  transform: rotate(30deg);
+}
+
+.char-arms.hugging .arm.left {
+  transform: rotate(-90deg) translateX(-20px);
+}
+
+.char-arms.hugging .arm.right {
+  transform: rotate(90deg) translateX(20px);
+}
+
+.char-label {
+  margin-top: 120px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e91e63;
+}
+
+.character.kits .char-head {
+  background: linear-gradient(135deg, #a3d8f4, #64b5f6);
+}
+
+.character.kits .char-torso {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+}
+
+.character.mish .char-head {
+  background: linear-gradient(135deg, #ffb3c6, #ff8fb3);
+}
+
+.character.mish .char-torso {
+  background: linear-gradient(135deg, #ff6b9d, #ff1493);
+}
+
+/* Spinning effect */
+.spin-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.spin-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  border: 5px dashed #ff1493;
+  border-radius: 50%;
+  animation: spinRotate 2s linear infinite;
+}
+
+/* Stage animations */
+.character.stage-6 {
+  animation: characterSpin 2s ease-in-out infinite;
+}
+
+/* Message Popup */
+.hug-message-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ffdce5, #ffc8d9);
+  border: 3px solid #ff69b4;
+  border-radius: 20px;
+  padding: 30px 40px;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(233, 30, 99, 0.4);
+  z-index: 1000;
+  animation: messagePopIn 0.5s ease-out;
+}
+
+.hug-message-popup p {
+  font-size: 18px;
+  color: #000000 !important;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* Collected Messages */
+.collected-hug-messages {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.collected-title {
+  font-size: 32px;
+  color: #fffef8 ;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.hug-message-card {
+  background: linear-gradient(135deg, #ffdce5, #ffcad6);
+  border: 3px solid #ffb3c6;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.2);
+  animation: messageSlideIn 0.5s ease-out;
+  transition: all 0.3s ease;
+}
+
+.hug-message-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(233, 30, 99, 0.3);
+}
+
+.message-stage {
+  font-size: 14px;
+  color: #ff1493;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.message-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #8b0045 !important;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Celebration */
+.hug-celebration {
+  position: relative;
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #ffdce5, #ffc8d9);
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(233, 30, 99, 0.3);
+  animation: celebrationAppear 0.8s ease-out;
+  text-align: center;
+}
+
+.celebration-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 24px;
+  animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+.celebration-title {
+  font-size: 42px;
+  color: #e91e63;
+  margin-bottom: 30px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+}
+
+.celebration-message {
+  font-size: 22px;
+  line-height: 1.8;
+  color: #8b0045;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.celebration-message strong {
+  color: #e91e63 !important;
+  font-size: 24px;
+  display: block;
+  margin-top: 20px;
+}
+
+.love-signature {
+  font-size: 24px;
+  color: #ff1493 !important;
+  font-style: italic;
+  font-family: 'Brush Script MT', cursive;
+  margin-top: 30px;
+}
+
+/* Animations */
+@keyframes hugBadgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes hugEmojiFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes instructionPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes completePulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+  }
+  50% {
+    box-shadow: 0 10px 50px rgba(233, 30, 99, 0.5);
+  }
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-400px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes spinRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes characterSpin {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(0) rotate(360deg);
+  }
+}
+
+@keyframes messagePopIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes celebrationAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes sparkleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hug-title {
+    font-size: 36px;
+  }
+
+  .hug-container {
+    min-height: 350px;
+    padding: 30px 20px;
+  }
+
+  .char-head {
+    width: 60px;
+    height: 60px;
+  }
+
+  .char-torso {
+    width: 50px;
+    height: 70px;
+  }
+
+  .char-face {
+    font-size: 30px;
+  }
+
+  .celebration-title {
+    font-size: 32px;
+  }
+
+  .celebration-message {
+    font-size: 18px;
+  }
+
+  .messages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hug-instruction {
+    font-size: 18px;
+  }
+
+  .char-head {
+    width: 50px;
+    height: 50px;
+  }
+
+  .char-torso {
+    width: 40px;
+    height: 60px;
+  }
+
+  .hug-message-popup {
+    padding: 20px 25px;
+    max-width: 90%;
+  }
+
+  .celebration-content {
+    padding: 20px;
+  }
+}
+

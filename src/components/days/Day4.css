@@ -1,0 +1,784 @@
+/* Teddy Day Styles */
+
+.teddy-day-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2d1810 0%, #4a3020 50%, #2d1810 100%);
+}
+
+/* Confetti */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -20px;
+  animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Header */
+.teddy-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 60px;
+  animation: fadeInUp 0.9s ease-out;
+}
+
+.teddy-badge {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.teddy-emoji-pulse {
+  display: inline-block;
+  font-size: 70px;
+  animation: teddyPulse 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(210, 105, 30, 0.6));
+}
+
+@keyframes teddyPulse {
+  0%, 100% {
+    transform: scale(1) rotate(-5deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(5deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.teddy-title {
+  font-size: 58px;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, #d2691e, #cd853f, #daa520);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.teddy-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 15px 0 5px;
+}
+
+.teddy-date {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+/* Main Container */
+.teddy-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 30px;
+  color: #daa520;
+  text-shadow: 0 2px 10px rgba(218, 165, 32, 0.4);
+}
+
+/* Teddy Bear Section */
+.teddy-bear-section {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.teddy-bear {
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+  transition: transform 0.3s ease;
+  animation: teddyAppear 1s ease-out;
+}
+
+@keyframes teddyAppear {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.teddy-bear.hugging {
+  animation: teddyHug 2s ease-in-out;
+}
+
+@keyframes teddyHug {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.teddy-bear.celebrating {
+  animation: teddyCelebrate 1s ease-in-out infinite;
+}
+
+@keyframes teddyCelebrate {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(5deg) scale(1.05);
+  }
+}
+
+.teddy-bear.walkingAway {
+  animation: teddyWalkAway 2.5s ease-in-out forwards;
+}
+
+@keyframes teddyWalkAway {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150vw) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Teddy Head */
+.teddy-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  z-index: 3;
+}
+
+.teddy-ear {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #8b5a3c;
+  border-radius: 50%;
+  border: 3px solid #6b4423;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.teddy-ear.left {
+  top: -10px;
+  left: -20px;
+}
+
+.teddy-ear.right {
+  top: -10px;
+  right: -20px;
+}
+
+.teddy-ear::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: #d2a679;
+  border-radius: 50%;
+}
+
+.teddy-face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: #a0714f;
+  border-radius: 50%;
+  border: 4px solid #8b5a3c;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.teddy-eyes {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 25px;
+  margin-top: 35px;
+}
+
+.teddy-eye {
+  width: 18px;
+  height: 18px;
+  background: #2c1810;
+  border-radius: 50%;
+  position: relative;
+}
+
+.teddy-eye::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.teddy-snout {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 50px;
+  background: #d2a679;
+  border-radius: 50%;
+  border: 3px solid #b8925f;
+}
+
+.teddy-nose {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 15px;
+  background: #2c1810;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.teddy-mouth {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 15px;
+  border: 3px solid #2c1810;
+  border-top: none;
+  border-radius: 0 0 30px 30px;
+}
+
+/* Teddy Body */
+.teddy-body-main {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 200px;
+  background: #a0714f;
+  border-radius: 50% 50% 40% 40%;
+  border: 4px solid #8b5a3c;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.teddy-body-main::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 140px;
+  background: #d2a679;
+  border-radius: 50%;
+  border: 3px solid #b8925f;
+}
+
+.teddy-chest-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  z-index: 1;
+  animation: heartBeat 2s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Stickers on Teddy */
+.teddy-sticker {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid #d2691e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  animation: stickerPulse 2s ease-in-out infinite;
+}
+
+@keyframes stickerPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.teddy-sticker:hover:not(.read) {
+  transform: scale(1.2);
+  box-shadow: 0 5px 20px rgba(210, 105, 30, 0.5);
+}
+
+.teddy-sticker.read {
+  background: rgba(144, 238, 144, 0.9);
+  border-color: #228b22;
+  cursor: default;
+  animation: none;
+}
+
+/* Teddy Arms */
+.teddy-arms {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 100px;
+  z-index: 1;
+}
+
+.teddy-arm {
+  position: absolute;
+  width: 60px;
+  height: 120px;
+  background: #a0714f;
+  border-radius: 30px;
+  border: 3px solid #8b5a3c;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease;
+}
+
+.teddy-arm.left {
+  left: -20px;
+  transform-origin: top center;
+  transform: rotate(-20deg);
+}
+
+.teddy-arm.right {
+  right: -20px;
+  transform-origin: top center;
+  transform: rotate(20deg);
+}
+
+.teddy-bear.hugging .teddy-arm.left {
+  transform: rotate(-60deg);
+}
+
+.teddy-bear.hugging .teddy-arm.right {
+  transform: rotate(60deg);
+}
+
+.teddy-arm::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  background: #a0714f;
+  border-radius: 50%;
+  border: 3px solid #8b5a3c;
+}
+
+/* Teddy Legs */
+.teddy-legs {
+  position: absolute;
+  top: 310px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 100px;
+  z-index: 1;
+}
+
+.teddy-leg {
+  position: absolute;
+  width: 70px;
+  height: 110px;
+  background: #a0714f;
+  border-radius: 20px 20px 50% 50%;
+  border: 3px solid #8b5a3c;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.teddy-leg.left {
+  left: 20px;
+}
+
+.teddy-leg.right {
+  right: 20px;
+}
+
+.teddy-leg::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 35px;
+  background: #8b5a3c;
+  border-radius: 50%;
+  border: 3px solid #6b4423;
+}
+
+.teddy-hint {
+  margin-top: 30px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  min-height: 24px;
+}
+
+/* Collected Messages Section */
+.collected-messages-section {
+  margin-bottom: 60px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.message-card {
+  background: linear-gradient(135deg, #a0714f, #8b5a3c);
+  border: 3px solid #6b4423;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 
+    0 5px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2);
+  animation: messageFloat 0.6s ease-out;
+  animation-fill-mode: both;
+  transition: all 0.3s ease;
+}
+
+@keyframes messageFloat {
+  from {
+    opacity: 0;
+    transform: translateY(30px) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.message-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 30px rgba(210, 105, 30, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+.message-icon {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.message-text {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Goodbye Message */
+.goodbye-message {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(218, 165, 32, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 700px;
+  margin: 40px auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: goodbyeReveal 0.8s ease-out;
+}
+
+@keyframes goodbyeReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.goodbye-sparkles {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.goodbye-sparkles span {
+  animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+.goodbye-sparkles span:nth-child(2) { animation-delay: 0.2s; }
+.goodbye-sparkles span:nth-child(3) { animation-delay: 0.4s; }
+.goodbye-sparkles span:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes sparkleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+}
+
+.goodbye-text {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 20px;
+  background: linear-gradient(135deg, #d2691e, #daa520);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.goodbye-message-text {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 30px;
+  line-height: 1.5;
+}
+
+.goodbye-signature {
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* Sticker Modal */
+.sticker-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sticker-modal {
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+  animation: modalPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes modalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #d2691e;
+  color: white;
+  border: 3px solid white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: #b8571a;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.sticker-card {
+  background: linear-gradient(135deg, #a0714f, #8b5a3c);
+  border: 3px solid #6b4423;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 
+    0 10px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.sticker-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: iconBounce 1s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.sticker-message {
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .teddy-title {
+    font-size: 42px;
+  }
+  
+  .teddy-bear {
+    transform: scale(0.8);
+  }
+  
+  .messages-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .goodbye-text {
+    font-size: 28px;
+  }
+  
+  .goodbye-message-text {
+    font-size: 20px;
+  }
+  
+  .sticker-card {
+    padding: 25px;
+  }
+  
+  .sticker-icon {
+    font-size: 60px;
+  }
+  
+  .sticker-message {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
