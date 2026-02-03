@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     // Check which day should be unlocked based on current date
     const checkDate = () => {
-      const today = new Date(2026, 1, 12)
+      const today = new Date()
       const feb7 = new Date(2026, 1, 7)  // Rose Day
       const feb8 = new Date(2026, 1, 8)  // Propose Day
       const feb9 = new Date(2026, 1, 9)  // Chocolate Day
