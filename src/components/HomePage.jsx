@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
 function HomePage({ onAccept, accepted }) {
-  const [noPosition, setNoPosition] = useState({ x: 0, y: 0 })
   const [noClickCount, setNoClickCount] = useState(0)
   const [floatingMessages, setFloatingMessages] = useState([])
   const areaRef = useRef(null)
@@ -46,19 +45,6 @@ function HomePage({ onAccept, accepted }) {
     setFloatingMessages(messages)
   }, [])
 
-  const handleNoHover = () => {
-    if (areaRef.current && noClickCount < 7) {
-      const area = areaRef.current.getBoundingClientRect()
-      const maxX = area.width - 120
-      const maxY = area.height - 60
-      
-      setNoPosition({
-        x: Math.random() * maxX,
-        y: Math.random() * maxY
-      })
-    }
-  }
-
   const handleNoClick = () => {
     setNoClickCount(prev => {
       const newCount = prev + 1
@@ -67,7 +53,6 @@ function HomePage({ onAccept, accepted }) {
       }
       return newCount
     })
-    handleNoHover()
   }
 
   const handleYesClick = () => {
@@ -150,19 +135,14 @@ function HomePage({ onAccept, accepted }) {
                   </button>
                   <button 
                     className="btn-no" 
-                    onMouseEnter={handleNoHover}
                     onClick={handleNoClick}
-                    style={{
-                      transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                      transform: noPosition.x ? `translate(${noPosition.x}px, -${noPosition.y}px)` : 'none'
-                    }}
                   >
                     <span className="btn-text">{noButtonTexts[Math.min(noClickCount, noButtonTexts.length - 1)]}</span>
                   </button>
                 </div>
 
                 <p className="hint-text">
-                  Psst... the NO button is shy. It runs away! 🏃‍♂️💨
+                  Psst... clicking NO 7 times unlocks a secret... or does it? 😏
                 </p>
               </div>
             </div>
