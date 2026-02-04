@@ -2,7 +2,6 @@ import "./Day1.css";
 import { useEffect, useMemo, useState } from "react";
 
 function Day1() {
-  // petalState: { [id]: 'open' | 'closing' }
   const [petalState, setPetalState] = useState({});
   const [floatingRoses, setFloatingRoses] = useState([]);
   const [showAllMessages, setShowAllMessages] = useState(false);
@@ -11,57 +10,57 @@ function Day1() {
     () => [
       {
         id: 1,
-        layer: "front",
-        position: "left-bottom",
+        ring: 1,
+        angle: 0,
         message: "You make my heart bloom! 🌹",
         pun: "I'm not rose-ing to the occasion, I'm blooming for you!",
       },
       {
         id: 2,
-        layer: "front",
-        position: "right-bottom",
+        ring: 1,
+        angle: 120,
         message: "Every petal reminds me of a reason I love you 💕",
         pun: "Red roses are red, violets are blue, but nothing in this world compares to you!",
       },
       {
         id: 3,
-        layer: "middle",
-        position: "left",
+        ring: 2,
+        angle: 60,
         message: "You're my garden of happiness! 🌸",
         pun: "Our love is like a rose garden - beautiful, timeless, and worth every thorn!",
       },
       {
         id: 4,
-        layer: "middle",
-        position: "right",
+        ring: 2,
+        angle: 180,
         message: "You're absolutely blooming wonderful! ✨",
         pun: "They say stop and smell the roses, but I'd rather stop and admire you!",
       },
       {
         id: 5,
-        layer: "middle",
-        position: "top-left",
+        ring: 3,
+        angle: 30,
         message: "My love for you will never wilt 🌹💕",
         pun: "A dozen roses couldn't compare to the way you make my heart skip!",
       },
       {
         id: 6,
-        layer: "middle",
-        position: "top-right",
+        ring: 3,
+        angle: 150,
         message: "You're the rose of my life! 💗",
         pun: "I'm thorn between loving you and loving you even more!",
       },
       {
         id: 7,
-        layer: "back",
-        position: "center-left",
+        ring: 4,
+        angle: 90,
         message: "Handle with care – you hold my heart! 💝",
         pun: "Roses are red, my face is too, that only happens when I think of you!",
       },
       {
         id: 8,
-        layer: "back",
-        position: "center-right",
+        ring: 4,
+        angle: 270,
         message: "You're more beautiful than any bouquet! 🌺",
         pun: "I'd choose a day with you over a garden full of roses any day!",
       },
@@ -70,7 +69,6 @@ function Day1() {
   );
 
   useEffect(() => {
-    // Floating roses background
     const roses = [];
     for (let i = 0; i < 15; i++) {
       roses.push({
@@ -95,7 +93,6 @@ function Day1() {
     setPetalState((prev) => {
       const cur = prev[petalId];
 
-      // open -> closing
       if (cur === "open") {
         const next = { ...prev, [petalId]: "closing" };
         window.setTimeout(() => {
@@ -108,7 +105,6 @@ function Day1() {
         return next;
       }
 
-      // closed (or closing) -> open
       return { ...prev, [petalId]: "open" };
     });
   };
@@ -119,21 +115,6 @@ function Day1() {
       return () => window.clearTimeout(t);
     }
   }, [allPetalsOpen, showAllMessages]);
-
-  // Position mapping for side-view petals
-  const getPetalPosition = (position) => {
-    const positions = {
-      "left-bottom": { x: -60, y: 35, rotation: -25 },
-      "right-bottom": { x: 60, y: 35, rotation: 25 },
-      "left": { x: -75, y: 0, rotation: -15 },
-      "right": { x: 75, y: 0, rotation: 15 },
-      "top-left": { x: -45, y: -45, rotation: -35 },
-      "top-right": { x: 45, y: -45, rotation: 35 },
-      "center-left": { x: -30, y: -10, rotation: -8 },
-      "center-right": { x: 30, y: -10, rotation: 8 },
-    };
-    return positions[position] || { x: 0, y: 0, rotation: 0 };
-  };
 
   return (
     <div className="rose-day-page">
@@ -165,156 +146,113 @@ function Day1() {
         <p className="rose-date">February 7, 2026</p>
       </div>
 
-      {/* Side-view Rose */}
+      {/* Rose */}
       <div className="rose-container">
-        <div className="rose-main-side">
-          {/* Stem */}
-          <div className="rose-stem-side">
-            {/* Leaves on stem */}
-            <div className="rose-leaf rose-leaf-1">
-              <div className="leaf-shape">🍃</div>
-            </div>
-            <div className="rose-leaf rose-leaf-2">
-              <div className="leaf-shape">🍃</div>
-            </div>
-          </div>
-
-          {/* Rose bloom container */}
-          <div className="rose-bloom-side">
-            {/* Background petals (layer: back) */}
-            <div className="petal-layer petal-layer-back">
-              {petalMessages
-                .filter((p) => p.layer === "back")
-                .map((petal) => {
-                  const open = isOpen(petal.id);
-                  const closing = isClosing(petal.id);
-                  const pos = getPetalPosition(petal.position);
-
-                  return (
+        <div className="rose-main">
+          {/* The beautiful CSS art rose */}
+          <div className="rose-art">
+            {/* Render petals in 4 rings */}
+            {[1, 2, 3, 4].map((ringNum) => {
+              const petalsInRing = ringNum === 1 ? 3 : ringNum === 2 ? 4 : ringNum === 3 ? 5 : 6;
+              const ringRadius = ringNum === 1 ? 75 : ringNum === 2 ? 125 : ringNum === 3 ? 170 : 205;
+              const petalSize = ringNum === 1 ? 85 : ringNum === 2 ? 105 : ringNum === 3 ? 120 : 130;
+              const spinOffset = ringNum * 12;
+              
+              return (
+                <div
+                  key={ringNum}
+                  className={`rose-ring ring-${ringNum}`}
+                  style={{ '--ring-tilt': `${ringNum * 3}deg` }}
+                >
+                  {Array.from({ length: petalsInRing }).map((_, i) => (
                     <div
-                      key={petal.id}
-                      className={`rose-petal-side ${open ? "petal-open" : ""} ${
-                        closing ? "petal-closing" : ""
-                      }`}
+                      key={i}
+                      className="rose-art-petal"
                       style={{
-                        transform: `translate(${pos.x}px, ${pos.y}px) rotate(${pos.rotation}deg)`,
-                        "--rot": `${pos.rotation}deg`,
+                        '--a': `${(360 / petalsInRing) * i}deg`,
+                        '--s': `${spinOffset}deg`,
+                        '--ring-radius': `${ringRadius}px`,
+                        '--petal-size': `${petalSize}px`,
+                        '--sc': ringNum === 1 ? 0.9 : ringNum === 4 ? 1.08 : 1,
+                        '--i': i,
                       }}
-                      onClick={() => handlePetalClick(petal.id)}
-                      role="button"
-                      aria-label={`Open message ${petal.id}`}
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") handlePetalClick(petal.id);
-                      }}
-                    >
-                      <div className="petal-visual">
-                        <span className="hotspot-halo" />
-                      </div>
-
-                      {(open || closing) && (
-                        <div className={`petal-message-popup ${closing ? "popup-closing" : ""}`}>
-                          <div className="popup-content">
-                            <p className="popup-message">{petal.message}</p>
-                            <p className="popup-pun">{petal.pun}</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-            </div>
-
-            {/* Middle petals (layer: middle) */}
-            <div className="petal-layer petal-layer-middle">
-              {petalMessages
-                .filter((p) => p.layer === "middle")
-                .map((petal) => {
-                  const open = isOpen(petal.id);
-                  const closing = isClosing(petal.id);
-                  const pos = getPetalPosition(petal.position);
-
-                  return (
-                    <div
-                      key={petal.id}
-                      className={`rose-petal-side ${open ? "petal-open" : ""} ${
-                        closing ? "petal-closing" : ""
-                      }`}
-                      style={{
-                        transform: `translate(${pos.x}px, ${pos.y}px) rotate(${pos.rotation}deg)`,
-                        "--rot": `${pos.rotation}deg`,
-                      }}
-                      onClick={() => handlePetalClick(petal.id)}
-                      role="button"
-                      aria-label={`Open message ${petal.id}`}
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") handlePetalClick(petal.id);
-                      }}
-                    >
-                      <div className="petal-visual">
-                        <span className="hotspot-halo" />
-                      </div>
-
-                      {(open || closing) && (
-                        <div className={`petal-message-popup ${closing ? "popup-closing" : ""}`}>
-                          <div className="popup-content">
-                            <p className="popup-message">{petal.message}</p>
-                            <p className="popup-pun">{petal.pun}</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-            </div>
-
-            {/* Front petals (layer: front) */}
-            <div className="petal-layer petal-layer-front">
-              {petalMessages
-                .filter((p) => p.layer === "front")
-                .map((petal) => {
-                  const open = isOpen(petal.id);
-                  const closing = isClosing(petal.id);
-                  const pos = getPetalPosition(petal.position);
-
-                  return (
-                    <div
-                      key={petal.id}
-                      className={`rose-petal-side ${open ? "petal-open" : ""} ${
-                        closing ? "petal-closing" : ""
-                      }`}
-                      style={{
-                        transform: `translate(${pos.x}px, ${pos.y}px) rotate(${pos.rotation}deg)`,
-                        "--rot": `${pos.rotation}deg`,
-                      }}
-                      onClick={() => handlePetalClick(petal.id)}
-                      role="button"
-                      aria-label={`Open message ${petal.id}`}
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") handlePetalClick(petal.id);
-                      }}
-                    >
-                      <div className="petal-visual">
-                        <span className="hotspot-halo" />
-                      </div>
-
-                      {(open || closing) && (
-                        <div className={`petal-message-popup ${closing ? "popup-closing" : ""}`}>
-                          <div className="popup-content">
-                            <p className="popup-message">{petal.message}</p>
-                            <p className="popup-pun">{petal.pun}</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-            </div>
+                    />
+                  ))}
+                </div>
+              );
+            })}
 
             {/* Center bud */}
-            <div className="rose-center-bud" />
+            <div className="rose-bud" />
+
+            {/* Lighting veil */}
+            <div className="rose-veil" />
+
+            {/* Clickable hotspots for messages */}
+            {petalMessages.map((petal) => {
+              const open = isOpen(petal.id);
+              const closing = isClosing(petal.id);
+              
+              // Position hotspots around the rose
+              const positions = {
+                1: { left: '50%', top: '15%', size: 'inner' },
+                2: { left: '75%', top: '28%', size: 'inner' },
+                3: { left: '25%', top: '28%', size: 'middle' },
+                4: { left: '82%', top: '50%', size: 'middle' },
+                5: { left: '18%', top: '50%', size: 'outer' },
+                6: { left: '70%', top: '75%', size: 'outer' },
+                7: { left: '30%', top: '75%', size: 'outer' },
+                8: { left: '50%', top: '82%', size: 'outer' },
+              };
+              
+              const pos = positions[petal.id];
+              
+              return (
+                <div
+                  key={petal.id}
+                  className={`rose-petal-hotspot hotspot-${pos.size} ${open ? 'petal-open' : ''} ${
+                    closing ? 'petal-closing' : ''
+                  }`}
+                  style={{
+                    left: pos.left,
+                    top: pos.top,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                  onClick={() => handlePetalClick(petal.id)}
+                  role="button"
+                  aria-label={`Open message ${petal.id}`}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handlePetalClick(petal.id);
+                    }
+                  }}
+                >
+                  <span className="hotspot-halo" />
+
+                  {(open || closing) && (
+                    <div className={`petal-message-popup ${closing ? 'popup-closing' : ''}`}>
+                      <div className="popup-content">
+                        <p className="popup-message">{petal.message}</p>
+                        <p className="popup-pun">{petal.pun}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Stem */}
+          <div className="rose-stem">
+            <div className="leaf leaf-left">🍃</div>
+            <div className="leaf leaf-right">🍃</div>
+          </div>
+
+          {/* Center icon */}
+          <div className="rose-center">
+            <div className="rose-core" />
           </div>
         </div>
 

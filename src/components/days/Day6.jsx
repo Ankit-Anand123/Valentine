@@ -4,6 +4,7 @@ import './Day6.css'
 function Day6() {
   const [hugStage, setHugStage] = useState(0) // 0-7 stages
   const [showMessage, setShowMessage] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const hugStages = [
     {
@@ -57,11 +58,13 @@ function Day6() {
   ]
 
   const handleClick = () => {
-    if (hugStage < hugStages.length - 1) {
+    if (hugStage < hugStages.length - 1 && !isTransitioning) {
+      setIsTransitioning(true)
       setShowMessage(true)
       setTimeout(() => {
         setHugStage(hugStage + 1)
         setShowMessage(false)
+        setIsTransitioning(false)
       }, 2000)
     }
   }
